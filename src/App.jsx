@@ -479,12 +479,12 @@ export default function App() {
           <div className="contact-grid">
             <div className="contact-info">
               {[
-                { icon: '📧', label: 'Email',    val: 'adithchandrasekar@gmail.com' },
-                { icon: '💼', label: 'LinkedIn', val: 'ADITH V C' },
-                { icon: '🐙', label: 'GitHub',   val: 'ADITH6452003' },
-                { icon: '📍', label: 'Location', val: 'India' },
-              ].map(({ icon, label, val }) => (
-                <div key={label} className="contact-card">
+                { icon: '📧', label: 'Email',    val: 'adithchandrasekar@gmail.com', href: 'mailto:adithchandrasekar@gmail.com' },
+                { icon: '💼', label: 'LinkedIn', val: 'ADITH V C', href: 'https://www.linkedin.com/in/adith-v-c-5ab4a1317/' },
+                { icon: '🐙', label: 'GitHub',   val: 'ADITH6452003', href: 'https://github.com/ADITH6452003' },
+                { icon: '📍', label: 'Location', val: 'India', href: null },
+              ].map(({ icon, label, val, href }) => (
+                <div key={label} className={`contact-card ${href ? 'contact-card-link' : ''}`} onClick={() => href && window.open(href, '_blank')}>
                   <span className="contact-icon">{icon}</span>
                   <div><strong>{label}</strong><p>{val}</p></div>
                 </div>
