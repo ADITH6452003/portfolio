@@ -193,6 +193,46 @@ function ProjectCard({ title, desc, tags, color, delay, live, repo }) {
   )
 }
 
+function ContactForm() {
+  const formRef = useRef()
+  const [status, setStatus] = useState('')
+  const [loading, setLoading] = useState(false)
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setLoading(true)
+    setStatus('')
+    try {
+      await emailjs.sendForm(EJS_SERVICE, EJS_TEMPLATE, formRef.current, EJS_KEY)
+      setStatus('success')
+      formRef.current.reset()
+      setTimeout(() => setStatus(''), 4000)
+    } catch (err) {
+      console.error('EmailJS error:', err)
+      setStatus('error')
+      setTimeout(() => setStatus(''), 4000)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  return (
+    <form ref={formRef} className="contact-form" onSubmit={handleSubmit}>
+      <div className="form-row">
+        <div className="form-group"><input type="text" name="from_name" placeholder="Your Name" required /></div>
+        <div className="form-group"><input type="email" name="from_email" placeholder="Your Email" required /></div>
+      </div>
+      <div className="form-group"><input type="text" name="subject" placeholder="Subject" /></div>
+      <div className="form-group"><textarea rows="5" name="message" placeholder="Your Message" required /></div>
+      <button type="submit" className="btn-primary btn-full" disabled={loading}>
+        {loading ? 'Sending... ⏳' : status === 'success' ? 'Sent ✅' : status === 'error' ? 'Failed ❌ Try again' : 'Send Message 🚀'}
+      </button>
+      {status === 'success' && <p className="form-status success">Message sent! I'll get back to you soon.</p>}
+      {status === 'error'   && <p className="form-status error">Something went wrong. Please try again.</p>}
+    </form>
+  )
+}
+
 function TimelineItem({ year, role, place, desc, color, idx }) {
   const [ref, visible] = useReveal()
   return (
@@ -450,15 +490,7 @@ export default function App() {
                 </div>
               ))}
             </div>
-            <form className="contact-form" onSubmit={e => e.preventDefault()}>
-              <div className="form-row">
-                <div className="form-group"><input type="text" placeholder="Your Name" required /></div>
-                <div className="form-group"><input type="email" placeholder="Your Email" required /></div>
-              </div>
-              <div className="form-group"><input type="text" placeholder="Subject" /></div>
-              <div className="form-group"><textarea rows="5" placeholder="Your Message" required /></div>
-              <button type="submit" className="btn-primary btn-full">Send Message 🚀</button>
-            </form>
+            <ContactForm />
           </div>
         </div>
       </section>
