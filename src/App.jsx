@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import emailjs from '@emailjs/browser'
+import heroImg from './assets/adi.jpeg'
 import './App.css'
 
 // ── EmailJS config ── replace these with your actual values from emailjs.com
@@ -362,9 +363,7 @@ export default function App() {
         </div>
         <div className="hero-visual">
           <div className="hero-photo-frame">
-            <div className="hero-photo-placeholder">AVC</div>
-            <div className="hero-ring ring1" />
-            <div className="hero-ring ring2" />
+            <img src={heroImg} alt="Adith V C" className="hero-photo" />
           </div>
           <div className="floating-badge badge1">React ⚛️</div>
           <div className="floating-badge badge2">ML 🤖</div>

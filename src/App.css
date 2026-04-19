@@ -6,8 +6,8 @@ ul { list-style: none; }
 
 /* ===== THEME VARIABLES ===== */
 :root[data-theme="dark"] {
-  --bg: #000000;
-  --bg-alt: #000000;
+  --bg: #080808;
+  --bg-alt: #080808;
   --surface: rgba(255,255,255,0.04);
   --surface-hover: rgba(255,255,255,0.08);
   --border: rgba(255,255,255,0.08);
@@ -386,11 +386,10 @@ body {
 }
 .hero-photo-frame {
   position: relative;
-  width: 300px;
-  height: 300px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+  height: 460px; overflow: hidden;
 }
 .hero-photo-placeholder {
   width: 260px;
@@ -406,6 +405,19 @@ body {
   letter-spacing: 2px;
   z-index: 1;
   position: relative;
+}
+.hero-photo {
+  width: 340px;
+  height: 460px;
+  object-fit: cover;
+  object-position: top center;
+  
+  
+  
+  z-index: 1;
+  position: relative;
+
+  filter: drop-shadow(0 0 30px rgba(99,102,241,0.25));
 }
 .hero-ring {
   position: absolute;
