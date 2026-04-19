@@ -389,7 +389,7 @@ body {
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  height: 460px; overflow: hidden;
+  height: 460px; overflow: visible;
 }
 .hero-photo-placeholder {
   width: 260px;
@@ -411,13 +411,22 @@ body {
   height: 460px;
   object-fit: cover;
   object-position: top center;
-  
-  
-  
   z-index: 1;
   position: relative;
-
-  filter: drop-shadow(0 0 30px rgba(99,102,241,0.25));
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  filter:
+    drop-shadow(-5px 0px 0 #fff)
+    drop-shadow(5px 0px 0 #fff)
+    drop-shadow(0px -5px 0 #fff)
+    drop-shadow(0px 5px 0 #fff)
+    drop-shadow(0 8px 24px rgba(0,0,0,0.6));
+  animation: photoFloat 3.5s ease-in-out infinite;
+}
+@keyframes photoFloat {
+  0%,100% { transform: translateY(0px); }
+  50%      { transform: translateY(-10px); }
 }
 .hero-ring {
   position: absolute;
