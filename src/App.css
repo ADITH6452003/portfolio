@@ -68,7 +68,7 @@ body {
   filter: blur(100px);
 }
 .bg-orb1 {
-  width: 600px; height: 600px;
+  width: 600px; height: 750px;
   background: radial-gradient(circle, rgba(99,102,241,0.28), transparent 70%);
   top: -10%; left: -8%;
   animation: blobDrift1 28s ease-in-out infinite;
@@ -389,7 +389,7 @@ body {
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  height: 480px;
+  height: 750px;
   overflow: visible;
   background: transparent;
 }
@@ -409,9 +409,9 @@ body {
   position: relative;
 }
 .hero-photo {
-  width: 340px;
+  width: 620px;
   height: auto;
-  max-height: 480px;
+  max-height: 750px;
   object-fit: contain;
   object-position: bottom center;
   z-index: 1;
@@ -442,7 +442,7 @@ body {
   opacity: 0.3;
 }
 .ring1 { width: 300px; height: 300px; animation: ringPulse 3s ease-in-out infinite; }
-.ring2 { width: 340px; height: 340px; animation: ringPulse 3s 1s ease-in-out infinite; }
+.ring2 { width: 620px; height: 340px; animation: ringPulse 3s 1s ease-in-out infinite; }
 @keyframes ringPulse {
   0%,100% { transform: scale(1);    opacity: 0.3; }
   50%      { transform: scale(1.05); opacity: 0.15; }
