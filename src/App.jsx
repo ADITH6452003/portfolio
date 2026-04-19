@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import emailjs from '@emailjs/browser'
 import heroImg from './assets/adi-removebg-preview.png'
 import './App.css'
+import GitHubGraph from './components/GitHubGraph'
 
 // ── EmailJS config ── replace these with your actual values from emailjs.com
 const EJS_SERVICE  = 'service_iwrvkhd'
@@ -454,8 +455,11 @@ export default function App() {
         </div>
       </section>
 
+      {/* GitHub Graph */}
+      <GitHubGraph />
+
       {/* Experience */}
-      <section id="experience" className="section section-alt">
+      <section id="experience" className="section">
         <div className="section-header">
           <span className="section-label">My Journey</span>
           <h2 className="section-title">Experience & <span className="gradient-text">Timeline</span></h2>
@@ -468,7 +472,7 @@ export default function App() {
       </section>
 
       {/* Contact */}
-      <section id="contact" className="section">
+      <section id="contact" className="section section-alt">
         <div ref={contactRef} className={`contact-wrapper ${contactVisible ? 'revealed' : ''}`}>
           <div className="section-header">
             <span className="section-label">Let's Talk</span>
