@@ -391,12 +391,13 @@ export default function App() {
         <div ref={aboutRef} className={`about-grid ${aboutVisible ? 'revealed' : ''}`}>
           <div className="about-text">
             <span className="section-label">About Me</span>
-            <h2 className="section-title">Building real-world systems, <span className="gradient-text">not just projects</span></h2>
-            <p>I'm a developer focused on Machine Learning, IoT, and Full Stack systems — turning practical problems into working solutions. From farm automation rovers to ML-based prediction models, I build systems that connect software with real-world impact.</p>
-            <p>I enjoy working across the stack, from embedded hardware like ESP32 to web platforms using React and Node.js, with a strong focus on functionality, efficiency, and clarity.</p>
-            <p>Outside of development, I explore emerging technologies, experiment with new ideas, and continuously refine my problem-solving approach.</p>
+            <h2 className="section-title">Building AI + IoT systems for <span className="gradient-text">real-world automation</span></h2>
+            <p>I design and build end-to-end systems that combine machine learning, embedded hardware, and web technologies to solve real-world problems.</p>
+            <p>My work focuses on practical automation — such as developing a solar-powered farm rover using ESP32 for irrigation monitoring and field assistance, as well as ML-based models for prediction and decision support.</p>
+            <p>I operate across the full stack, from low-level hardware integration (ESP32, sensors, motor control) to scalable web applications using React and Node.js. My approach emphasizes reliability, efficiency, and system-level thinking rather than isolated features.</p>
+            <p>I prioritize building solutions that are functional in real environments, not just demonstrations — focusing on constraints like power usage, sensor accuracy, and deployment conditions.</p>
             <div className="stats">
-              {[['3+', 'Core Domains'], ['10+', 'Projects Built'], ['5+', 'Tech in Production'], ['100%', 'Practical Focus']].map(([n, l]) => (
+              {[['10+', 'Systems & Projects Built'], ['3', 'Core Areas (IoT, ML, Full Stack)'], ['5+', 'Integrated Technologies'], ['1', 'Flagship Automation System']].map(([n, l]) => (
                 <div key={l} className="stat"><strong>{n}</strong><span>{l}</span></div>
               ))}
             </div>
