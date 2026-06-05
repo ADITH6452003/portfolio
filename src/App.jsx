@@ -63,7 +63,8 @@ const TECH_MARQUEE = [
 const PROJECTS = [
   {
     title: 'HabitTrackPro',
-    desc: 'Full-stack habit tracking app with monthly calendar grid. Users define custom tasks, check them off daily, and track progress with completion percentages. Auto-syncs to MongoDB Atlas.',
+    desc: 'Monthly habit tracker with calendar grid, daily check-offs, and progress tracking. Auto-syncs to MongoDB Atlas.',
+    flow: 'Login/Register → React App loads (Tracker / Analytics / Social tabs) → Tracker: HabitTable checkboxes + categories → POST /api/savedata → MongoDB | Analytics: Heatmap + Velocity chart + Avatar stats → GET /api/user-stats | Social: Contracts modal → POST /api/contracts → accept/decline/done → node-cron (midnight) expires contracts + transfers points → Every 10-day streak → token awarded',
     tags: ['React', 'Node.js', 'MongoDB', 'Express', 'Vite'],
     color: '#f59e0b',
     live: 'https://habittrack-front.vercel.app/',
@@ -71,7 +72,8 @@ const PROJECTS = [
   },
   {
     title: 'PlantGenius',
-    desc: 'ML-powered Flask app using Random Forest (200 estimators) to recommend optimal crops based on soil, weather, and NPK levels. Features Location Scout map and AI chatbot via Groq API.',
+    desc: 'Random Forest crop recommendation using soil, weather, and NPK inputs. Includes live location map and Groq AI chatbot.',
+    flow: 'Welcome Page → Dashboard loads (2-panel) → User fills farm params (Soil, pH, Temp, N/P/K) → [Optional] GPS → Open-Meteo API auto-fills weather → POST /predict → LabelEncoder → Random Forest → Top 4 crops ranked by confidence → Animated result cards | Chatbot: User question + mode (General/Fertilizer/Market) → POST /chat → Groq LLaMA 3.3 70B → [Market mode] data.gov.in live mandi prices → Animated reply',
     tags: ['Python', 'Flask', 'Random Forest', 'Groq API', 'Leaflet'],
     color: '#10b981',
     live: 'https://random-forest-crop-prediction-tz02.onrender.com',
@@ -79,15 +81,26 @@ const PROJECTS = [
   },
   {
     title: 'Leave Management System',
-    desc: 'Role-based leave workflow for educational institutions. Staff apply → HODs review → Principal approves, with JWT auth, MongoDB backend, and a clean React UI.',
+    desc: 'Role-based leave workflow — Staff apply, HODs review, Principal approves. JWT auth with React + Node.js + MongoDB.',
+    flow: 'Staff apply → HOD reviews (dept) → Principal approves → Status updated in MongoDB → React dashboard re-renders | Hierarchy: Principal → HOD → Staff → Students (assigned only)',
     tags: ['React', 'Node.js', 'MongoDB', 'JWT', 'Express'],
     color: '#6366f1',
     live: 'https://lms-frontend-sable-six.vercel.app/',
     repo: 'https://github.com/ADITH6452003/LMSFrontend',
   },
   {
-    title: 'BloggerGo',
-    desc: 'Full-stack blogging platform with React 19 + Vite frontend. Features JWT auth, CRUD blogs, author search, top authors leaderboard, and MongoDB Atlas persistence.',
+    title: 'EduNet',
+    desc: 'Google Classroom clone — teachers manage classrooms, students access assignments. Role-based access with Groq AI chatbot.',
+    flow: 'User Action → React Component → Axios + JWT → Express Route → Controller → MongoDB Atlas → JSON Response → Re-render UI',
+    tags: ['React 19', 'Node.js', 'MongoDB', 'JWT', 'Groq AI', 'Tailwind'],
+    color: '#06b6d4',
+    live: 'https://edu-net-frontend.vercel.app/',
+    repo: 'https://github.com/ADITH6452003/EduNet-frontend',
+  },
+  {
+    title: 'BloggerGo!',
+    desc: 'Full-stack blogging platform with JWT auth, CRUD blogs, author search, and top authors leaderboard.',
+    flow: 'User (Browser) → React + Vite (Vercel) → HTTPS REST API + Bearer JWT → Node.js + Express (Render) → Mongoose ODM → MongoDB Atlas',
     tags: ['React 19', 'Node.js', 'MongoDB', 'JWT', 'Express'],
     color: '#3b82f6',
     live: 'https://bloggergo-front.vercel.app/',
@@ -166,7 +179,7 @@ function SkillBar({ name, level, icon, delay }) {
   )
 }
 
-function ProjectCard({ title, desc, tags, color, delay, live, repo }) {
+function ProjectCard({ title, desc, tags, color, delay, live, repo, flow }) {
   const [ref, visible] = useReveal()
   const [hovered, setHovered] = useState(false)
   const animIdx = useRef(Math.floor(Math.random() * 4))
@@ -183,6 +196,12 @@ function ProjectCard({ title, desc, tags, color, delay, live, repo }) {
       <div className="card-accent-bar" style={{ background: color }} />
       <h3>{title}</h3>
       <p>{desc}</p>
+      {flow && (
+        <div className="card-arch">
+          <span className="card-arch-title">Workflow</span>
+          <div className="card-flow">{flow}</div>
+        </div>
+      )}
       <div className="tags">
         {tags.map(t => <span key={t} className="tag">{t}</span>)}
       </div>
