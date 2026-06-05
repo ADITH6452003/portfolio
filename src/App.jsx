@@ -45,19 +45,32 @@ function useReveal(threshold = 0.12) {
 const NAV_LINKS = ['Home', 'About', 'Skills', 'Projects', 'Experience', 'Contact']
 
 const SKILLS = [
-  { name: 'React / Vite',      level: 90, icon: '⚛️' },
-  { name: 'JavaScript',        level: 85, icon: '🟨' },
-  { name: 'Python / Flask',    level: 80, icon: '🐍' },
-  { name: 'Node.js / Express', level: 75, icon: '🟢' },
-  { name: 'Machine Learning',  level: 72, icon: '🤖' },
-  { name: 'MongoDB',           level: 78, icon: '🍃' },
-  { name: 'IoT / ESP32',       level: 68, icon: '📡' },
-  { name: 'CSS / Tailwind',    level: 85, icon: '🎨' },
+  { name: 'React / Vite',      level: 90, icon: '⚛️', cat: 'Frontend' },
+  { name: 'JavaScript',        level: 85, icon: '🟨', cat: 'Frontend' },
+  { name: 'Python / Flask',    level: 80, icon: '🐍', cat: 'Backend' },
+  { name: 'Node.js / Express', level: 75, icon: '🟢', cat: 'Backend' },
+  { name: 'Machine Learning',  level: 72, icon: '🤖', cat: 'Data Science' },
+  { name: 'MongoDB',           level: 78, icon: '🍃', cat: 'Database' },
+  { name: 'IoT / ESP32',       level: 68, icon: '📡', cat: 'Embedded' },
+  { name: 'C / C++',           level: 74, icon: '⚙️', cat: 'Core Languages' },
+]
+
+const SKILL_CATS = [
+  { label: 'Core Languages & Algorithms', items: ['C', 'C++', 'JavaScript', 'Python'], icon: '⚙️' },
+  { label: 'Data Science & ML',           items: ['Random Forest', 'XGBoost', 'Predictive Modeling', 'Data Manipulation'], icon: '🤖' },
+  { label: 'Full Stack Web',              items: ['React 19', 'Node.js', 'Express', 'MongoDB', 'JWT', 'REST API'], icon: '🌐' },
+  { label: 'Embedded & IoT',              items: ['ESP32', 'Sensor Pipelines', 'Motor Control', 'MQTT'], icon: '📡' },
+  { label: 'Tools & Environment',         items: ['Linux (Pop!_OS/Ubuntu)', 'Git', 'Docker', 'Vercel', 'Render'], icon: '🛠️' },
+]
+
+const CP_SKILLS = [
+  'Sliding Window', 'Prefix Sums', 'Two Pointers', 'Dynamic Programming',
+  'N-Queens', 'Sieve of Eratosthenes', 'Graph Traversal', 'Binary Search',
 ]
 
 const TECH_MARQUEE = [
   'React','Node.js','Python','MongoDB','Express','Flask','ESP32','JWT',
-  'Random Forest','Vite','Mongoose','REST API','Groq API','Leaflet','Git','Vercel',
+  'Random Forest','Vite','Mongoose','REST API','Groq API','Leaflet','Git','Vercel','C++','Linux',
 ]
 
 const PROJECTS = [
@@ -359,17 +372,19 @@ export default function App() {
         <div className="hero-content">
           <p className="hero-greeting">👋 Hello, I'm</p>
           <h1 className="hero-name">ADITH V C</h1>
+          <p className="hero-value-prop">Data-driven developer blending competitive programming fundamentals with machine learning to build impactful, real-world systems.</p>
           <h2 className="hero-role">
             <span className="typewriter">{role}</span>
             <span className="cursor">|</span>
           </h2>
           <p className="hero-bio">
-            I build real-world systems — from ML crop prediction models and IoT farm rovers
-            to full-stack web platforms. I connect software with practical impact.
+            I build end-to-end systems — from ML crop prediction models and IoT farm rovers
+            to full-stack web platforms — connecting software with measurable, real-world impact.
           </p>
           <div className="hero-actions">
             <button className="btn-primary" onClick={() => scrollTo('Projects')}>View My Work</button>
             <button className="btn-outline" onClick={() => scrollTo('Contact')}>Get In Touch</button>
+            <a href="/resume.pdf" download className="btn-outline btn-resume">Download CV ↓</a>
           </div>
           <div className="hero-socials">
             {[
@@ -451,8 +466,20 @@ export default function App() {
         <div className="section-header">
           <span className="section-label">What I Know</span>
           <h2 className="section-title">My <span className="gradient-text">Skills</span></h2>
-          <p className="section-sub">Technologies I work with across ML, IoT, and Full Stack development</p>
+          <p className="section-sub">Categorized across Core Languages, Data Science, Full Stack, IoT, and Tools</p>
         </div>
+
+        <div className="skill-cats">
+          {SKILL_CATS.map(({ label, items, icon }) => (
+            <div key={label} className="skill-cat-card">
+              <div className="skill-cat-header"><span>{icon}</span><strong>{label}</strong></div>
+              <div className="skill-cat-items">
+                {items.map(i => <span key={i} className="skill-cat-item">{i}</span>)}
+              </div>
+            </div>
+          ))}
+        </div>
+
         <div ref={techRef} className={`tech-pills ${techVisible ? 'revealed' : ''}`}>
           {TECH_MARQUEE.map((t, i) => (
             <span key={t} className="tech-pill" style={{ '--pill-delay': `${i * 60}ms` }}>{t}</span>
@@ -460,6 +487,22 @@ export default function App() {
         </div>
         <div className="skills-grid">
           {SKILLS.map((s, i) => <SkillBar key={s.name} {...s} delay={i * 100} />)}
+        </div>
+
+        <div className="cp-section">
+          <div className="cp-header">
+            <span className="section-label">Problem Solving</span>
+            <h3 className="cp-title">Competitive Programming <span className="gradient-text">Fundamentals</span></h3>
+            <p className="cp-sub">Deep algorithmic knowledge that survives technical whiteboard interviews</p>
+          </div>
+          <div className="cp-grid">
+            {CP_SKILLS.map((s, i) => (
+              <div key={s} className="cp-item" style={{ '--cp-delay': `${i * 80}ms` }}>
+                <span className="cp-dot" />{s}
+              </div>
+            ))}
+          </div>
+          <a href="https://leetcode.com/u/ADITH_52/" target="_blank" rel="noopener noreferrer" className="cp-link">View LeetCode Profile →</a>
         </div>
       </section>
 
