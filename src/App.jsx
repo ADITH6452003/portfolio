@@ -3,6 +3,13 @@ import emailjs from '@emailjs/browser'
 import heroImg from './assets/adith.jpeg'
 import './App.css'
 import GitHubGraph from './components/GitHubGraph'
+import ProjectWorkflow from './components/ProjectWorkflow'
+
+import habittrackImg from './assets/habittrack.png'
+import plantgeniusImg from './assets/plantGeius.png'
+import leavemanagementImg from './assets/leave management system .png'
+import edunetImg from './assets/edunet.png'
+import bloggergoImg from './assets/bloggergo.png'
 
 // ── EmailJS config ── replace these with your actual values from emailjs.com
 const EJS_SERVICE  = 'service_iwrvkhd'
@@ -64,7 +71,43 @@ const PROJECTS = [
   {
     title: 'HabitTrackPro',
     desc: 'Monthly habit tracker with calendar grid, daily check-offs, and progress tracking. Auto-syncs to MongoDB Atlas.',
-    flow: 'Login/Register → React App loads (Tracker / Analytics / Social tabs) → Tracker: HabitTable checkboxes + categories → POST /api/savedata → MongoDB | Analytics: Heatmap + Velocity chart + Avatar stats → GET /api/user-stats | Social: Contracts modal → POST /api/contracts → accept/decline/done → node-cron (midnight) expires contracts + transfers points → Every 10-day streak → token awarded',
+    img: habittrackImg,
+    flows: [
+      {
+        name: 'Authentication',
+        steps: [
+          { label: 'Login/Register', type: 'user' },
+          { label: 'React App Loads Tabs', type: 'ui' },
+          { label: 'Authenticate JWT', type: 'api' }
+        ]
+      },
+      {
+        name: 'Habit Logging',
+        steps: [
+          { label: 'Check Habit Boxes', type: 'user' },
+          { label: 'POST /api/savedata', type: 'api' },
+          { label: 'MongoDB Atlas', type: 'db' }
+        ]
+      },
+      {
+        name: 'Analytics',
+        steps: [
+          { label: 'Request Stats', type: 'ui' },
+          { label: 'GET /api/user-stats', type: 'api' },
+          { label: 'Render Heatmap & Charts', type: 'ui' }
+        ]
+      },
+      {
+        name: 'Social Contracts',
+        steps: [
+          { label: 'Contracts modal', type: 'ui' },
+          { label: 'POST /api/contracts', type: 'api' },
+          { label: 'Accept/Decline/Done', type: 'user' },
+          { label: 'node-cron (midnight) check', type: 'server' },
+          { label: 'Award streak tokens', type: 'ui' }
+        ]
+      }
+    ],
     tags: ['React', 'Node.js', 'MongoDB', 'Express', 'Vite'],
     color: '#f59e0b',
     live: 'https://habittrack-front.vercel.app/',
@@ -73,7 +116,31 @@ const PROJECTS = [
   {
     title: 'PlantGenius',
     desc: 'Random Forest crop recommendation using soil, weather, and NPK inputs. Includes live location map and Groq AI chatbot.',
-    flow: 'Welcome Page → Dashboard loads (2-panel) → User fills farm params (Soil, pH, Temp, N/P/K) → [Optional] GPS → Open-Meteo API auto-fills weather → POST /predict → LabelEncoder → Random Forest → Top 4 crops ranked by confidence → Animated result cards | Chatbot: User question + mode (General/Fertilizer/Market) → POST /chat → Groq LLaMA 3.3 70B → [Market mode] data.gov.in live mandi prices → Animated reply',
+    img: plantgeniusImg,
+    flows: [
+      {
+        name: 'Crop Prediction',
+        steps: [
+          { label: 'Farm inputs (Soil, pH, Temp)', type: 'user' },
+          { label: 'Open-Meteo API weather', type: 'external' },
+          { label: 'POST /predict', type: 'api' },
+          { label: 'LabelEncoder transform', type: 'server' },
+          { label: 'Random Forest Model', type: 'ml' },
+          { label: 'Rank Top 4 Crops', type: 'server' },
+          { label: 'Render animated cards', type: 'ui' }
+        ]
+      },
+      {
+        name: 'AI Chatbot',
+        steps: [
+          { label: 'Ask chat question', type: 'user' },
+          { label: 'POST /chat', type: 'api' },
+          { label: 'Groq LLaMA 3.3 70B', type: 'ml' },
+          { label: 'Mandi Live Prices (data.gov.in)', type: 'external' },
+          { label: 'Display AI answer', type: 'ui' }
+        ]
+      }
+    ],
     tags: ['Python', 'Flask', 'Random Forest', 'Groq API', 'Leaflet'],
     color: '#10b981',
     live: 'https://random-forest-crop-prediction-tz02.onrender.com',
@@ -82,7 +149,29 @@ const PROJECTS = [
   {
     title: 'Leave Management System',
     desc: 'Role-based leave workflow — Staff apply, HODs review, Principal approves. JWT auth with React + Node.js + MongoDB.',
-    flow: 'Staff apply → HOD reviews (dept) → Principal approves → Status updated in MongoDB → React dashboard re-renders | Hierarchy: Principal → HOD → Staff → Students (assigned only)',
+    img: leavemanagementImg,
+    flows: [
+      {
+        name: 'Leave Approval',
+        steps: [
+          { label: 'Staff applies leave', type: 'user' },
+          { label: 'JWT auth check', type: 'api' },
+          { label: 'HOD reviews (dept)', type: 'user' },
+          { label: 'Principal approves', type: 'user' },
+          { label: 'Status updated in MongoDB', type: 'db' },
+          { label: 'React UI re-renders status', type: 'ui' }
+        ]
+      },
+      {
+        name: 'User Hierarchy',
+        steps: [
+          { label: 'Principal Role', type: 'user' },
+          { label: 'HOD (Dept) Role', type: 'user' },
+          { label: 'Staff Member Role', type: 'user' },
+          { label: 'Student (Assigned)', type: 'user' }
+        ]
+      }
+    ],
     tags: ['React', 'Node.js', 'MongoDB', 'JWT', 'Express'],
     color: '#6366f1',
     live: 'https://lms-frontend-sable-six.vercel.app/',
@@ -91,7 +180,30 @@ const PROJECTS = [
   {
     title: 'EduNet',
     desc: 'Google Classroom clone — teachers manage classrooms, students access assignments. Role-based access with Groq AI chatbot.',
-    flow: 'User Action → React Component → Axios + JWT → Express Route → Controller → MongoDB Atlas → JSON Response → Re-render UI',
+    img: edunetImg,
+    flows: [
+      {
+        name: 'Classroom Flow',
+        steps: [
+          { label: 'Create/Access class', type: 'user' },
+          { label: 'Axios API Request + JWT', type: 'api' },
+          { label: 'Express Router check', type: 'server' },
+          { label: 'Classroom Controller logic', type: 'server' },
+          { label: 'Fetch/Write MongoDB Atlas', type: 'db' },
+          { label: 'JSON API response', type: 'api' },
+          { label: 'Re-render dashboard', type: 'ui' }
+        ]
+      },
+      {
+        name: 'AI Advisor Chat',
+        steps: [
+          { label: 'Ask about assignment', type: 'user' },
+          { label: 'POST /api/ai/advise', type: 'api' },
+          { label: 'Groq API response', type: 'ml' },
+          { label: 'Render response markdown', type: 'ui' }
+        ]
+      }
+    ],
     tags: ['React 19', 'Node.js', 'MongoDB', 'JWT', 'Groq AI', 'Tailwind'],
     color: '#06b6d4',
     live: 'https://edu-net-frontend.vercel.app/',
@@ -100,7 +212,20 @@ const PROJECTS = [
   {
     title: 'BloggerGo!',
     desc: 'Full-stack blogging platform with JWT auth, CRUD blogs, author search, and top authors leaderboard.',
-    flow: 'User (Browser) → React + Vite (Vercel) → HTTPS REST API + Bearer JWT → Node.js + Express (Render) → Mongoose ODM → MongoDB Atlas',
+    img: bloggergoImg,
+    flows: [
+      {
+        name: 'Blog CRUD & Leaderboard',
+        steps: [
+          { label: 'Create/Read/Update blog', type: 'user' },
+          { label: 'React + Vite UI', type: 'ui' },
+          { label: 'REST API Request + JWT', type: 'api' },
+          { label: 'Node/Express Server', type: 'server' },
+          { label: 'Mongoose ODM model', type: 'db' },
+          { label: 'MongoDB Atlas instance', type: 'db' }
+        ]
+      }
+    ],
     tags: ['React 19', 'Node.js', 'MongoDB', 'JWT', 'Express'],
     color: '#3b82f6',
     live: 'https://bloggergo-front.vercel.app/',
@@ -179,36 +304,46 @@ function SkillBar({ name, level, icon, delay }) {
   )
 }
 
-function ProjectCard({ title, desc, tags, color, delay, live, repo, flow }) {
+function ProjectCard({ title, desc, tags, color, delay, live, repo, flows, img, idx }) {
   const [ref, visible] = useReveal()
   const [hovered, setHovered] = useState(false)
   const animIdx = useRef(Math.floor(Math.random() * 4))
   const driftClass = ['drift-card-a','drift-card-b','drift-card-c','drift-card-d'][animIdx.current]
+  const isEven = idx % 2 === 0
   return (
     <div
       ref={ref}
-      className={`project-card ${visible ? 'revealed' : ''} ${hovered ? '' : driftClass}`}
+      className={`project-card ${visible ? 'revealed' : ''} ${hovered ? '' : driftClass} ${isEven ? 'row-normal' : 'row-reversed'}`}
       style={{ '--delay': `${delay}ms`, '--accent': color }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
       <div className="card-glow" />
       <div className="card-accent-bar" style={{ background: color }} />
-      <h3>{title}</h3>
-      <p>{desc}</p>
-      {flow && (
-        <div className="card-arch">
-          <span className="card-arch-title">Workflow</span>
-          <div className="card-flow">{flow}</div>
+      
+      <div className="project-card-image-col">
+        <div className="project-img-wrapper">
+          <img src={img} alt={title} className="project-card-img" />
+          <div className="project-img-glow" style={{ background: color }} />
         </div>
-      )}
-      <div className="tags">
-        {tags.map(t => <span key={t} className="tag">{t}</span>)}
       </div>
-      <div className="card-links">
-        {live && live !== '#' && <a href={live} target="_blank" rel="noopener noreferrer" className="card-btn card-btn-live">Live Demo <span className="btn-icon">↗</span></a>}
-        {repo && repo !== '#' && <a href={repo} target="_blank" rel="noopener noreferrer" className="card-btn card-btn-repo">GitHub <span className="btn-icon">↗</span></a>}
-        {(!live || live === '#') && (!repo || repo === '#') && <button className="card-btn card-btn-plain">View Project <span className="btn-icon">→</span></button>}
+      
+      <div className="project-card-info-col">
+        <h3>{title}</h3>
+        <p>{desc}</p>
+        
+        {flows && (
+          <ProjectWorkflow flows={flows} accentColor={color} />
+        )}
+
+        <div className="tags">
+          {tags.map(t => <span key={t} className="tag">{t}</span>)}
+        </div>
+        <div className="card-links">
+          {live && live !== '#' && <a href={live} target="_blank" rel="noopener noreferrer" className="card-btn card-btn-live">Live Demo <span className="btn-icon">↗</span></a>}
+          {repo && repo !== '#' && <a href={repo} target="_blank" rel="noopener noreferrer" className="card-btn card-btn-repo">GitHub <span className="btn-icon">↗</span></a>}
+          {(!live || live === '#') && (!repo || repo === '#') && <button className="card-btn card-btn-plain">View Project <span className="btn-icon">→</span></button>}
+        </div>
       </div>
     </div>
   )
@@ -471,7 +606,7 @@ export default function App() {
           <p className="section-sub">Real-world applications built and deployed end-to-end</p>
         </div>
         <div className="projects-grid">
-          {PROJECTS.map((p, i) => <ProjectCard key={p.title} {...p} delay={i * 120} />)}
+          {PROJECTS.map((p, i) => <ProjectCard key={p.title} {...p} idx={i} delay={i * 120} />)}
         </div>
       </section>
 
