@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import emailjs from '@emailjs/browser'
-import heroImg from './assets/adi-removebg-preview.png'
+import heroImg from './assets/adith.jpeg'
 import './App.css'
 import GitHubGraph from './components/GitHubGraph'
 
