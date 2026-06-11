@@ -546,12 +546,46 @@ export default function App() {
           <div className="about-text">
             <span className="section-label">About Me</span>
             <h2 className="section-title">Building AI + IoT systems for <span className="gradient-text">real-world automation</span></h2>
-            <p>I design and build end-to-end systems that combine machine learning, embedded hardware, and web technologies to solve real-world problems.</p>
-            <p>My work focuses on practical automation — such as developing a solar-powered farm rover using ESP32 for irrigation monitoring and field assistance, as well as ML-based models for prediction and decision support.</p>
-            <p>I operate across the full stack, from low-level hardware integration (ESP32, sensors, motor control) to scalable web applications using React and Node.js. My approach emphasizes reliability, efficiency, and system-level thinking rather than isolated features.</p>
-            <p>I prioritize building solutions that are functional in real environments, not just demonstrations — focusing on constraints like power usage, sensor accuracy, and deployment conditions.</p>
+            
+            <div className="about-text-content">
+              <p className="about-lead-in">
+                I design end-to-end systems that bridge machine learning, embedded hardware, and scalable web technologies to solve physical-world problems.
+              </p>
+              
+              <div className="about-focal-points">
+                <div className="about-point">
+                  <div className="about-point-icon">🌱</div>
+                  <div className="about-point-text">
+                    <strong>Practical Automation</strong>
+                    This ranges from developing a solar-powered farm rover using ESP32 for irrigation monitoring, to engineering supervised learning models (like XGBoost and Random Forest) trained on localized agricultural data for precision decision support.
+                  </div>
+                </div>
+                
+                <div className="about-point">
+                  <div className="about-point-icon">⚙️</div>
+                  <div className="about-point-text">
+                    <strong>Full-Stack Integration</strong>
+                    I operate across the entire stack. I am just as comfortable writing efficient C/C++ for low-level hardware integration and algorithmic logic as I am building clean, scalable web applications using React and Node.js in a Linux (Pop!_OS/Ubuntu) environment. My approach emphasizes reliability and system-level thinking rather than isolated features.
+                  </div>
+                </div>
+                
+                <div className="about-point">
+                  <div className="about-point-icon">⚡</div>
+                  <div className="about-point-text">
+                    <strong>Real-World Reliability</strong>
+                    Whether I am architecting a long-term deployment or collaborating to ship a working prototype within a 24-hour hackathon constraint, I prioritize solutions that function in real environments—optimizing for power limitations, sensor accuracy, and strict deployment conditions.
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div className="stats">
-              {[['10+', 'Systems & Projects Built'], ['3', 'Core Areas (IoT, ML, Full Stack)'], ['5+', 'Integrated Technologies'], ['1', 'Flagship Automation System']].map(([n, l]) => (
+              {[
+                ['10+', 'Systems & Projects Built'],
+                ['4-Person', 'Development Team Lead'],
+                ['24-Hr', 'Hackathon Prototypes Shipped'],
+                ['1', 'Flagship Automation System']
+              ].map(([n, l]) => (
                 <div key={l} className="stat"><strong>{n}</strong><span>{l}</span></div>
               ))}
             </div>
@@ -561,20 +595,21 @@ export default function App() {
               <div className="code-dots"><span /><span /><span /></div>
               <pre>{`const developer = {
   name: "Adith V C",
-  role: "ML | IoT | Full Stack",
+  role: "ML | IoT | Full-Stack Engineer",
   coreFocus: [
-    "Machine Learning",
-    "Embedded Systems",
-    "Web Development"
+    "Predictive Modeling & ML",
+    "Embedded Systems (ESP32)",
+    "Algorithm Optimization (C/C++)"
   ],
   keyProjects: [
-    "Farm Automation Rover",
-    "Crop Prediction System",
-    "File Sharing Platform"
+    "Solar Farm Automation Rover",
+    "Regional Crop Prediction Model",
+    "Rural Telemedicine Architecture"
   ],
-  approach: "Build → Test → Improve",
-  strength: "Real-world problem solving",
-  available: true ✅
+  approach: "Build → Test → Optimize",
+  environment: "Pop!_OS | Node.js | React",
+  strength: "Real-world problem solving under constraints",
+  availableForHire: true
 }`}</pre>
             </div>
           </div>

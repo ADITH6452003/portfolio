@@ -82,51 +82,63 @@ export default function GitHubGraph() {
         }}
       >
         {/* Last Year Graph */}
-        <div style={{ height: '300px', display: 'flex', flexDirection: 'column' }}>
+        <div style={{ height: '350px', display: 'flex', flexDirection: 'column' }}>
           <h3 style={{ textAlign: 'center', color: '#8b5cf6', marginBottom: '1.5rem', fontSize: '1.1rem', fontWeight: 'bold' }}>{lastYear} Contributions</h3>
-          <ResponsiveContainer width="100%" height="100%">
-            <AreaChart data={data} margin={{ top: 0, right: 10, left: -20, bottom: 0 }}>
-              <defs>
-                <linearGradient id="colorLastYear" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#8b5cf6" stopOpacity={0.5}/>
-                  <stop offset="95%" stopColor="#8b5cf6" stopOpacity={0}/>
-                </linearGradient>
-              </defs>
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
-              <XAxis dataKey="name" stroke="rgba(255,255,255,0.4)" tick={{ fill: 'rgba(255,255,255,0.6)', fontSize: 12 }} axisLine={false} tickLine={false} />
-              <YAxis stroke="rgba(255,255,255,0.4)" tick={{ fill: 'rgba(255,255,255,0.6)', fontSize: 12 }} axisLine={false} tickLine={false} />
-              <Tooltip 
-                contentStyle={{ backgroundColor: '#222', borderColor: '#444', borderRadius: '8px', color: '#fff', boxShadow: '0 4px 12px rgba(0,0,0,0.5)' }}
-                itemStyle={{ color: '#fff' }}
-                cursor={{ stroke: 'rgba(255,255,255,0.1)', strokeWidth: 2 }}
-              />
-              <Area type="monotone" dataKey={lastYear} stroke="#8b5cf6" strokeWidth={3} fillOpacity={1} fill="url(#colorLastYear)" name={`${lastYear}`} />
-            </AreaChart>
-          </ResponsiveContainer>
+          {visible && data.length > 0 ? (
+            <div style={{ flex: 1, minHeight: 0 }}>
+              <ResponsiveContainer width="100%" height="100%">
+                <AreaChart data={data} margin={{ top: 0, right: 10, left: -20, bottom: 0 }}>
+                  <defs>
+                    <linearGradient id="colorLastYear" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="#8b5cf6" stopOpacity={0.5}/>
+                      <stop offset="95%" stopColor="#8b5cf6" stopOpacity={0}/>
+                    </linearGradient>
+                  </defs>
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+                  <XAxis dataKey="name" stroke="rgba(255,255,255,0.4)" tick={{ fill: 'rgba(255,255,255,0.6)', fontSize: 12 }} axisLine={false} tickLine={false} />
+                  <YAxis stroke="rgba(255,255,255,0.4)" tick={{ fill: 'rgba(255,255,255,0.6)', fontSize: 12 }} axisLine={false} tickLine={false} />
+                  <Tooltip 
+                    contentStyle={{ backgroundColor: '#222', borderColor: '#444', borderRadius: '8px', color: '#fff', boxShadow: '0 4px 12px rgba(0,0,0,0.5)' }}
+                    itemStyle={{ color: '#fff' }}
+                    cursor={{ stroke: 'rgba(255,255,255,0.1)', strokeWidth: 2 }}
+                  />
+                  <Area type="monotone" dataKey={lastYear} stroke="#8b5cf6" strokeWidth={3} fillOpacity={1} fill="url(#colorLastYear)" name={`${lastYear}`} />
+                </AreaChart>
+              </ResponsiveContainer>
+            </div>
+          ) : (
+            <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-muted)' }}>Loading Activity...</div>
+          )}
         </div>
 
         {/* Current Year Graph */}
-        <div style={{ height: '300px', display: 'flex', flexDirection: 'column' }}>
+        <div style={{ height: '350px', display: 'flex', flexDirection: 'column' }}>
           <h3 style={{ textAlign: 'center', color: '#10b981', marginBottom: '1.5rem', fontSize: '1.1rem', fontWeight: 'bold' }}>{currentYear} Contributions</h3>
-          <ResponsiveContainer width="100%" height="100%">
-            <AreaChart data={data} margin={{ top: 0, right: 10, left: -20, bottom: 0 }}>
-              <defs>
-                <linearGradient id="colorCurrentYear" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#10b981" stopOpacity={0.5}/>
-                  <stop offset="95%" stopColor="#10b981" stopOpacity={0}/>
-                </linearGradient>
-              </defs>
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
-              <XAxis dataKey="name" stroke="rgba(255,255,255,0.4)" tick={{ fill: 'rgba(255,255,255,0.6)', fontSize: 12 }} axisLine={false} tickLine={false} />
-              <YAxis stroke="rgba(255,255,255,0.4)" tick={{ fill: 'rgba(255,255,255,0.6)', fontSize: 12 }} axisLine={false} tickLine={false} />
-              <Tooltip 
-                contentStyle={{ backgroundColor: '#222', borderColor: '#444', borderRadius: '8px', color: '#fff', boxShadow: '0 4px 12px rgba(0,0,0,0.5)' }}
-                itemStyle={{ color: '#fff' }}
-                cursor={{ stroke: 'rgba(255,255,255,0.1)', strokeWidth: 2 }}
-              />
-              <Area type="monotone" dataKey={currentYear} stroke="#10b981" strokeWidth={3} fillOpacity={1} fill="url(#colorCurrentYear)" name={`${currentYear}`} />
-            </AreaChart>
-          </ResponsiveContainer>
+          {visible && data.length > 0 ? (
+            <div style={{ flex: 1, minHeight: 0 }}>
+              <ResponsiveContainer width="100%" height="100%">
+                <AreaChart data={data} margin={{ top: 0, right: 10, left: -20, bottom: 0 }}>
+                  <defs>
+                    <linearGradient id="colorCurrentYear" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="#10b981" stopOpacity={0.5}/>
+                      <stop offset="95%" stopColor="#10b981" stopOpacity={0}/>
+                    </linearGradient>
+                  </defs>
+                  <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+                  <XAxis dataKey="name" stroke="rgba(255,255,255,0.4)" tick={{ fill: 'rgba(255,255,255,0.6)', fontSize: 12 }} axisLine={false} tickLine={false} />
+                  <YAxis stroke="rgba(255,255,255,0.4)" tick={{ fill: 'rgba(255,255,255,0.6)', fontSize: 12 }} axisLine={false} tickLine={false} />
+                  <Tooltip 
+                    contentStyle={{ backgroundColor: '#222', borderColor: '#444', borderRadius: '8px', color: '#fff', boxShadow: '0 4px 12px rgba(0,0,0,0.5)' }}
+                    itemStyle={{ color: '#fff' }}
+                    cursor={{ stroke: 'rgba(255,255,255,0.1)', strokeWidth: 2 }}
+                  />
+                  <Area type="monotone" dataKey={currentYear} stroke="#10b981" strokeWidth={3} fillOpacity={1} fill="url(#colorCurrentYear)" name={`${currentYear}`} />
+                </AreaChart>
+              </ResponsiveContainer>
+            </div>
+          ) : (
+            <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-muted)' }}>Loading Activity...</div>
+          )}
         </div>
       </div>
     </section>
