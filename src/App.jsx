@@ -473,7 +473,7 @@ export default function App() {
 
       {/* Navbar */}
       <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
-        <div className="nav-logo" onClick={() => scrollTo('home')}>&lt;<span>Adith</span>/&gt;</div>
+        <div className="nav-logo" onClick={() => scrollTo('home')}>Adith V C<span>.com</span></div>
         <ul className={`nav-links ${menuOpen ? 'open' : ''}`}>
           {NAV_LINKS.map(link => (
             <li key={link}>
