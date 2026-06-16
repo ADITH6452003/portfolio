@@ -61,11 +61,16 @@ const SKILLS = [
   { name: 'MongoDB',           level: 78, icon: '🍃' },
   { name: 'IoT / ESP32',       level: 68, icon: '📡' },
   { name: 'CSS / Tailwind',    level: 85, icon: '🎨' },
+  { name: 'Docker & Docker Hub', level: 80, icon: '🐳' },
+  { name: 'AWS EC2',           level: 78, icon: '☁️' },
+  { name: 'AWS ECS / ECR',     level: 72, icon: '📦' },
+  { name: 'AWS S3',            level: 85, icon: '🪣' },
 ]
 
 const TECH_MARQUEE = [
   'React','Node.js','Python','MongoDB','Express','Flask','ESP32','JWT',
   'Random Forest','Vite','Mongoose','REST API','Groq API','Leaflet','Git','Vercel',
+  'Docker','Docker Hub','AWS EC2','AWS ECS','AWS ECR','AWS S3',
 ]
 
 const PROJECTS = [
@@ -550,6 +555,7 @@ export default function App() {
             {[
               { label: 'GitHub',   href: 'https://github.com/ADITH6452003' },
               { label: 'LinkedIn', href: 'https://www.linkedin.com/in/adith-v-c-5ab4a1317/' },
+              { label: 'Docker Hub', href: 'https://hub.docker.com/u/adithvc' },
               { label: 'LeetCode', href: 'https://leetcode.com/u/ADITH_52/' },
             ].map(({ label, href }) => (
               <a key={label} href={href} className="social-link" target="_blank" rel="noopener noreferrer">{label}</a>
@@ -715,6 +721,7 @@ export default function App() {
                 { icon: '📧', label: 'Email',    val: 'adithchandrasekar@gmail.com', href: 'mailto:adithchandrasekar@gmail.com' },
                 { icon: '💼', label: 'LinkedIn', val: 'ADITH V C', href: 'https://www.linkedin.com/in/adith-v-c-5ab4a1317/' },
                 { icon: '🐙', label: 'GitHub',   val: 'ADITH6452003', href: 'https://github.com/ADITH6452003' },
+                { icon: '🐳', label: 'Docker Hub', val: 'adithvc', href: 'https://hub.docker.com/u/adithvc' },
                 { icon: '📍', label: 'Location', val: 'India', href: null },
               ].map(({ icon, label, val, href }) => (
                 <div key={label} className={`contact-card ${href ? 'contact-card-link' : ''}`} onClick={() => href && window.open(href, '_blank')}>
@@ -734,6 +741,7 @@ export default function App() {
           {[
             { label: 'GitHub',   href: 'https://github.com/ADITH6452003' },
             { label: 'LinkedIn', href: 'https://www.linkedin.com/in/adith-v-c-5ab4a1317/' },
+            { label: 'Docker Hub', href: 'https://hub.docker.com/u/adithvc' },
             { label: 'LeetCode', href: 'https://leetcode.com/u/ADITH_52/' },
           ].map(({ label, href }) => (
             <a key={label} href={href} target="_blank" rel="noopener noreferrer">{label}</a>
