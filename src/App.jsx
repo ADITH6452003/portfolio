@@ -10,6 +10,7 @@ import plantgeniusImg from './assets/plantGeius.png'
 import leavemanagementImg from './assets/leave management system .png'
 import edunetImg from './assets/edunet.png'
 import bloggergoImg from './assets/bloggergo.png'
+import arc01Img from './assets/image.png'
 
 // ── EmailJS config ── replace these with your actual values from emailjs.com
 const EJS_SERVICE  = 'service_iwrvkhd'
@@ -68,6 +69,45 @@ const TECH_MARQUEE = [
 ]
 
 const PROJECTS = [
+  {
+    title: 'Arc-01',
+    desc: 'An autonomous cloud architecture designer and deployment engine that synthesizes Terraform HCL from natural language, verifies security guardrails, and deploys multi-cloud infrastructure with self-healing fallback support.',
+    img: arc01Img,
+    flows: [
+      {
+        name: 'IaC Synthesis',
+        steps: [
+          { label: 'Prompt AdvisorChat / Composer', type: 'user' },
+          { label: 'Verify VITE_LLM_API_KEY environment', type: 'server' },
+          { label: 'Request Gemini API via chatService', type: 'api' },
+          { label: 'Synthesize HCL & enforce security guardrails', type: 'ml' },
+          { label: 'Render blueprint, recommendations & HCL', type: 'ui' }
+        ]
+      },
+      {
+        name: 'Cloud Deployment',
+        steps: [
+          { label: 'Trigger AutoDeploy / DockerDeploy flow', type: 'user' },
+          { label: 'AWS/Azure/GCP Provider Adapter mapping', type: 'server' },
+          { label: 'Execute containerized builds via Docker context', type: 'external' },
+          { label: 'Stream real-time terminal output to UI', type: 'ui' }
+        ]
+      },
+      {
+        name: 'Self-Healing Fallback',
+        steps: [
+          { label: 'Detect LLM API key / service failure', type: 'external' },
+          { label: 'Trigger fallback static code generators', type: 'server' },
+          { label: 'Load offline pre-defined blueprints', type: 'db' },
+          { label: 'Render fallback IaC with warning banner', type: 'ui' }
+        ]
+      }
+    ],
+    tags: ['React', 'Node.js', 'Terraform', 'Gemini API', 'Docker', 'Provider Adapters'],
+    color: '#a855f7',
+    live: 'https://arc-01-cloud-architecture-recommendation.onrender.com',
+    repo: 'https://github.com/SECE-24-28/arc1-ta-mlops-project',
+  },
   {
     title: 'HabitTrackPro',
     desc: 'Monthly habit tracker with calendar grid, daily check-offs, and progress tracking. Auto-syncs to MongoDB Atlas.',
